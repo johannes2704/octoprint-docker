@@ -34,11 +34,13 @@ RUN apt-get update && apt-get install -y \
   g++ \
   git \
   haproxy \
+  libpq-dev \
   libjpeg-dev \
   libjpeg62-turbo \
   libprotobuf-dev \
   libv4l-dev \
   openssh-client \
+  python-dev \
   v4l-utils \
   xz-utils \
   zlib1g-dev
@@ -57,6 +59,9 @@ RUN	curl -fsSLO --compressed --retry 3 --retry-delay 10 \
 WORKDIR /opt/octoprint
 RUN pip install .
 RUN mkdir -p /octoprint/octoprint /octoprint/plugins
+
+#Filament Manager Prereq
+RUN pip install psycopg2
 
 # Install mjpg-streamer
 RUN curl -fsSLO --compressed --retry 3 --retry-delay 10 \
